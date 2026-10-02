@@ -1,0 +1,350 @@
+[
+  {
+    "title": "TC01 Homepage catalog",
+    "expected": "Shop QA Demo displays three named products, their expected prices and detail links.",
+    "kind": "Smoke",
+    "steps": [
+      {
+        "action": "navigate",
+        "target": "/"
+      },
+      {
+        "action": "assertText",
+        "target": "#brand",
+        "expected": "Shop QA Demo"
+      },
+      {
+        "action": "assertText",
+        "target": "#results-heading",
+        "expected": "3 products"
+      },
+      {
+        "action": "assertText",
+        "target": "#product-mouse .product-title",
+        "expected": "Wireless Mouse"
+      },
+      {
+        "action": "assertText",
+        "target": "#product-keyboard .product-title",
+        "expected": "Mechanical Keyboard"
+      },
+      {
+        "action": "assertText",
+        "target": "#product-headphones .product-title",
+        "expected": "Studio Headphones"
+      },
+      {
+        "action": "assertText",
+        "target": "#product-mouse .price",
+        "expected": "₹799"
+      },
+      {
+        "action": "assertText",
+        "target": "#product-keyboard .price",
+        "expected": "₹1299"
+      },
+      {
+        "action": "assertText",
+        "target": "#product-headphones .price",
+        "expected": "₹2499"
+      },
+      {
+        "action": "assertVisible",
+        "target": "#view-mouse"
+      },
+      {
+        "action": "assertVisible",
+        "target": "#view-keyboard"
+      },
+      {
+        "action": "assertVisible",
+        "target": "#view-headphones"
+      }
+    ],
+    "natural": "Open the homepage. Verify Shop QA Demo, product count 3, Wireless Mouse priced ₹799, Mechanical Keyboard priced ₹1299, Studio Headphones priced ₹2499 and a visible View details link for each product."
+  },
+  {
+    "title": "TC02 Exact search input",
+    "expected": "The search field retains the exact entered text wireless mouse.",
+    "kind": "Functional",
+    "steps": [
+      {
+        "action": "navigate",
+        "target": "/"
+      },
+      {
+        "action": "fill",
+        "target": "#query",
+        "value": "wireless mouse"
+      },
+      {
+        "action": "assertValue",
+        "target": "#query",
+        "expected": "wireless mouse"
+      },
+      {
+        "action": "assertVisible",
+        "target": "#search-button"
+      }
+    ],
+    "natural": "Open the homepage, enter wireless mouse in the Search products field, verify its exact input value before submission and verify the Search button is visible."
+  },
+  {
+    "title": "TC03 Mixed case search",
+    "expected": "Searching for MoUsE with surrounding spaces returns product count 1 and Wireless Mouse.",
+    "kind": "Functional",
+    "steps": [
+      {
+        "action": "navigate",
+        "target": "/"
+      },
+      {
+        "action": "fill",
+        "target": "#query",
+        "value": "  MoUsE  "
+      },
+      {
+        "action": "click",
+        "target": "#search-button"
+      },
+      {
+        "action": "assertText",
+        "target": "#results-heading",
+        "expected": "1 products"
+      },
+      {
+        "action": "assertText",
+        "target": "#product-mouse .product-title",
+        "expected": "Wireless Mouse"
+      }
+    ],
+    "natural": "Open the homepage, enter two spaces followed by MoUsE followed by two spaces, click Search and verify the result count is 1 with Wireless Mouse visible."
+  },
+  {
+    "title": "TC04 Search with no matches",
+    "expected": "An unmatched query displays product count 0 and No products found.",
+    "kind": "Negative",
+    "steps": [
+      {
+        "action": "navigate",
+        "target": "/"
+      },
+      {
+        "action": "fill",
+        "target": "#query",
+        "value": "zz_no_match_987"
+      },
+      {
+        "action": "click",
+        "target": "#search-button"
+      },
+      {
+        "action": "assertText",
+        "target": "#results-heading",
+        "expected": "0 products"
+      },
+      {
+        "action": "assertText",
+        "target": "#empty-state",
+        "expected": "No products found"
+      }
+    ],
+    "natural": "Search for zz_no_match_987 and verify product count 0 and the visible message No products found."
+  },
+  {
+    "title": "TC05 Empty search",
+    "expected": "Clearing a previous search displays product count 3 and all catalog products.",
+    "kind": "Boundary",
+    "steps": [
+      {
+        "action": "navigate",
+        "target": "/search?q=mouse"
+      },
+      {
+        "action": "fill",
+        "target": "#query",
+        "value": ""
+      },
+      {
+        "action": "assertValue",
+        "target": "#query",
+        "expected": ""
+      },
+      {
+        "action": "click",
+        "target": "#search-button"
+      },
+      {
+        "action": "assertText",
+        "target": "#results-heading",
+        "expected": "3 products"
+      },
+      {
+        "action": "assertVisible",
+        "target": "#product-mouse"
+      },
+      {
+        "action": "assertVisible",
+        "target": "#product-keyboard"
+      },
+      {
+        "action": "assertVisible",
+        "target": "#product-headphones"
+      }
+    ],
+    "natural": "Open /search?q=mouse, clear the search field, click Search and verify product count 3 and all three catalog products are visible."
+  },
+  {
+    "title": "TC06 Product details",
+    "expected": "Each catalog detail link opens the matching product with its description, correct price and Add to cart.",
+    "kind": "Functional",
+    "steps": [
+      {
+        "action": "navigate",
+        "target": "/"
+      },
+      {
+        "action": "click",
+        "target": "#view-mouse"
+      },
+      {
+        "action": "assertURL",
+        "target": "/products/mouse",
+        "expected": "/products/mouse"
+      },
+      {
+        "action": "assertText",
+        "target": "#product-title",
+        "expected": "Wireless Mouse"
+      },
+      {
+        "action": "assertText",
+        "target": "#product-description",
+        "expected": "compact wireless mouse"
+      },
+      {
+        "action": "assertText",
+        "target": "#product-price",
+        "expected": "₹799"
+      },
+      {
+        "action": "assertVisible",
+        "target": "#add-to-cart"
+      },
+      {
+        "action": "navigate",
+        "target": "/"
+      },
+      {
+        "action": "click",
+        "target": "#view-keyboard"
+      },
+      {
+        "action": "assertURL",
+        "target": "/products/keyboard",
+        "expected": "/products/keyboard"
+      },
+      {
+        "action": "assertText",
+        "target": "#product-title",
+        "expected": "Mechanical Keyboard"
+      },
+      {
+        "action": "assertText",
+        "target": "#product-description",
+        "expected": "mechanical keyboard"
+      },
+      {
+        "action": "assertText",
+        "target": "#product-price",
+        "expected": "₹1299"
+      },
+      {
+        "action": "assertVisible",
+        "target": "#add-to-cart"
+      },
+      {
+        "action": "navigate",
+        "target": "/"
+      },
+      {
+        "action": "click",
+        "target": "#view-headphones"
+      },
+      {
+        "action": "assertURL",
+        "target": "/products/headphones",
+        "expected": "/products/headphones"
+      },
+      {
+        "action": "assertText",
+        "target": "#product-title",
+        "expected": "Studio Headphones"
+      },
+      {
+        "action": "assertText",
+        "target": "#product-description",
+        "expected": "headphones"
+      },
+      {
+        "action": "assertText",
+        "target": "#product-price",
+        "expected": "₹2499"
+      },
+      {
+        "action": "assertVisible",
+        "target": "#add-to-cart"
+      }
+    ],
+    "natural": "Open the catalog and follow each View details link separately. Verify /products/mouse with Wireless Mouse and ₹799, /products/keyboard with Mechanical Keyboard and ₹1299, and /products/headphones with Studio Headphones and ₹2499. On every detail page verify the matching title, a visible description and Add to cart button. Return to the catalog between products."
+  },
+  {
+    "title": "TC07 Add Wireless Mouse",
+    "expected": "Adding Wireless Mouse once changes fresh cart count 0 to 1 and displays Added to cart.",
+    "kind": "Functional",
+    "steps": [
+      {
+        "action": "navigate",
+        "target": "/products/mouse"
+      },
+      {
+        "action": "assertText",
+        "target": "#cart-count",
+        "expected": "0"
+      },
+      {
+        "action": "click",
+        "target": "#add-to-cart"
+      },
+      {
+        "action": "assertText",
+        "target": "#cart-count",
+        "expected": "1"
+      },
+      {
+        "action": "assertText",
+        "target": "#cart-message",
+        "expected": "Added to cart"
+      }
+    ],
+    "natural": "Open a fresh /products/mouse page and verify cart count 0. Click Add to cart once, then verify cart count 1 and the visible confirmation Added to cart. Retain these expected values even if the application has a defect."
+  },
+  {
+    "title": "TC08 Health endpoint",
+    "expected": "GET /api/health returns HTTP 200 with status ok.",
+    "kind": "Integration",
+    "steps": [
+      {
+        "action": "navigate",
+        "target": "/"
+      },
+      {
+        "action": "api",
+        "target": "/api/health",
+        "expected": "200",
+        "value": "\"status\":\"ok\""
+      }
+    ],
+    "natural": "Request GET /api/health on the connected origin. Verify HTTP status 200 and a response body containing the status property equal to ok."
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "name": "verisentinel-qa",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node scripts/start.cjs dev",
+    "start": "node scripts/start.cjs start",
+    "build": "npm --prefix web run build",
+    "check": "node web/node_modules/typescript/bin/tsc --noEmit --project web/tsconfig.json && npm --prefix web run lint && node agent/node_modules/typescript/bin/tsc --noEmit --project agent/tsconfig.json",
+    "setup": "npm --prefix web ci && npm --prefix agent ci",
+    "test:e2e": "node agent/tests/e2e.cjs"
+  },
+  "description": "Requirements-driven quality assurance with executable browser tests, evidence, defect tracking and release validation.",
+  "keywords": [
+    "quality-assurance",
+    "test-automation",
+    "playwright",
+    "requirements-traceability",
+    "nextjs",
+    "fastapi"
+  ],
+  "engines": {
+    "node": ">=22.13.0"
+  }
+}
