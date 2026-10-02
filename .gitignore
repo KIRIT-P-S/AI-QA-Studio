@@ -29,4 +29,5 @@ Thumbs.db
 .vscode/
 .idea/
 *.md
+!/README.md
 !examples/manual-test-pack/Shop_QA_Demo_PRD.md
