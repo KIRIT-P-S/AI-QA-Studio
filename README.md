@@ -80,6 +80,8 @@ On macOS 14 or later, clone or extract the repository into its final writable lo
 
 After setup, use **Configure AI.command**, **Start AI QA Studio.command** and **Stop AI QA Studio.command**. The installer performs native Python import checks and an actual browser assertion before marking the installation ready. The complete Mac workflow still requires validation on the target Mac.
 
+If a downloaded launcher is blocked as **Not Opened**, the scripts are unsigned and not notarized. For a trusted, reviewed download, dismiss the dialog with **Done**, then use **System Settings > Privacy & Security > Open Anyway** for that launcher and confirm **Open**. Approval may be required for each launcher. Managed Macs may require administrator approval. See [Apple's opening instructions](https://support.apple.com/en-us/102445). Complete setup before running configuration or start.
+
 ## Testing workflow
 
 1. Create a project with an application URL, owner and environment.
