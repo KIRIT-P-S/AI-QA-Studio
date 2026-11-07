@@ -51,7 +51,7 @@ The frontend forwards `/api` requests to the Python service. The execution agent
 Install Node.js 22.13 or later, Python 3.12 and Git. Run these commands in PowerShell:
 
 ```powershell
-git clone https://github.com/KIRIT-P-S/VeriSentinel-QA.git
+git clone https://github.com/KIRIT-P-S/AI-QA-Studio.git
 cd VeriSentinel-QA
 python -m venv backend/venv
 backend/venv/Scripts/python.exe -m pip install -r backend/requirements.txt
@@ -81,6 +81,12 @@ On macOS 14 or later, clone or extract the repository into its final writable lo
 After setup, use **Configure AI.command**, **Start AI QA Studio.command** and **Stop AI QA Studio.command**. The installer performs native Python import checks and an actual browser assertion before marking the installation ready. The complete Mac workflow still requires validation on the target Mac.
 
 If a downloaded launcher is blocked as **Not Opened**, the scripts are unsigned and not notarized. For a trusted, reviewed download, dismiss the dialog with **Done**, then use **System Settings > Privacy & Security > Open Anyway** for that launcher and confirm **Open**. Approval may be required for each launcher. Managed Macs may require administrator approval. See [Apple's opening instructions](https://support.apple.com/en-us/102445). Complete setup before running configuration or start.
+
+## Build client packages
+
+After completing the Windows setup and build above, run `backend/venv/Scripts/python.exe scripts/build-windows-package.py` to assemble a clean, self-contained Windows x64 delivery. The build uses the installed Playwright browser and stores its archive under the ignored `deliverables/` folder. For the client Mac, run `backend/venv/Scripts/python.exe scripts/build-mac-package.py` to prepare a source package with native first-run setup. Neither package includes the workspace API key or saved project evidence.
+
+The Mac launchers are unsigned and not notarized. If macOS displays a **Not Opened** warning, the reviewed file can be approved under **System Settings > Privacy & Security > Open Anyway**. Read the [Mac setup guide](handoff/mac/Mac%20Quick%20Start.md) first. Apple may request approval for each command file; device management policies can also block approval. The installer never disables Gatekeeper.
 
 ## Testing workflow
 

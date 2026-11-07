@@ -16,7 +16,16 @@ runtime/
 .desktop/
 scratch/
 deliverables/
-handoff/
+!handoff/
+handoff/*
+!handoff/START HERE.html
+!handoff/Client_Quick_Start.md
+!handoff/Presenter_Demo_Guide.md
+!handoff/mac/
+handoff/mac/*
+!handoff/mac/*.command
+!handoff/mac/*.html
+!handoff/mac/*.md
 *.log
 *.zip
 *.trace
@@ -31,3 +40,7 @@ Thumbs.db
 *.md
 !/README.md
 !examples/manual-test-pack/Shop_QA_Demo_PRD.md
+
+!handoff/Client_Quick_Start.md
+!handoff/Presenter_Demo_Guide.md
+!handoff/mac/*.md
